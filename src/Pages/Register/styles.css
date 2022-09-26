@@ -1,0 +1,27 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.logo-site {
+    position: absolute;
+    top: 5px;
+    width: 120px;
+    border-radius: 100%;
+}
+
+.login-title {
+    padding-top: 80px;
+}
+
+.span-register {
+    margin-left: 3px;
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}

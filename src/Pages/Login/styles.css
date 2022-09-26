@@ -1,0 +1,10 @@
+.logo-site {
+    position: absolute;
+    top: 5px;
+    width: 120px;
+    border-radius: 100%;
+}
+
+.login-title {
+    padding-top: 80px;
+}

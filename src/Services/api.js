@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "localhost:4000"
+    baseURL: "https://contact-me-ap.herokuapp.com"
 })

@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    background-color: #a7d5d5;
+}
+
+.logo-header {
+    margin-top: 10px;
+    width: 70px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 100%;
+}
+
+.button-header {
+    color: red;
+    font-size: 12px;
+}
