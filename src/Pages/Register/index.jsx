@@ -55,13 +55,7 @@ export default function SignInSide() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function onSubmitFunction(data) {
-    const newUser = {
-      name: data.name,
-      password: data.password,
-      phone: Number(data.phone),
-      email: data.email
-    }
-    registerUser(newUser)
+    registerUser(data)
   }
 
   useEffect(() => {
@@ -122,7 +116,7 @@ export default function SignInSide() {
                 id="telefone"
                 label="Telefone"
                 name="telefone"
-                type="number"
+                type="tel"
                 autoComplete="telefone"
                 autoFocus
                 {...register("phone")}

@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,500;1,600&display=swap');
+
 .header {
     display: flex;
     background-color: #a7d5d5;
+    text-align: center;
 }
 
 .logo-header {
@@ -11,7 +14,18 @@
     border-radius: 100%;
 }
 
-.button-header {
-    color: red;
-    font-size: 12px;
+.name-user {
+    font-family: "Montserrat";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FAFAFA;
+    margin-top: 32px;
+    margin-left: 10px;
+    height: 24px;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

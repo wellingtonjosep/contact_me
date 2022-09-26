@@ -6,13 +6,13 @@ import { Box } from "@mui/system";
 import { Button, TextField, Typography } from "@mui/material";
 import { ContactContext } from "../../Providers/contact";
 
-function ModalCreate() {
-  const { setModalCreate, createContact } = useContext(ContactContext);
+function ModalUpdate() {
+  const { createContact, setModalUpdate, contact, updateContact } = useContext(ContactContext);
 
   const schema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório!"),
-    email: yup.string().email("Email Inválido").required("Campo obrigatório!"),
-    phone: yup.string().required("Campo obrigatório!"),
+    name: yup.string(),
+    email: yup.string().email("Email Inválido"),
+    phone: yup.string(),
   });
 
   const {
@@ -22,7 +22,7 @@ function ModalCreate() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function onSubmitFunction(data) {
-    createContact(data);
+    updateContact(data);
   }
 
   return (
@@ -51,7 +51,7 @@ function ModalCreate() {
         }}
       >
         <section>
-          <Typography variant="h6">ADICIONAR NOVO CONTATO</Typography>
+          <Typography variant="h6">ATUALIZAR CONTATO</Typography>
           <Button
             sx={{
               position: "absolute",
@@ -64,7 +64,7 @@ function ModalCreate() {
               fontSize: "21px",
             }}
             variant="outlined"
-            onClick={() => setModalCreate(false)}
+            onClick={() => setModalUpdate(false)}
           >
             X
           </Button>
@@ -75,7 +75,7 @@ function ModalCreate() {
             fullWidth
             id="name"
             variant="outlined"
-            label="Nome"
+            label={contact.name}
             name="name"
             autoComplete="name"
             autoFocus
@@ -90,7 +90,7 @@ function ModalCreate() {
             margin="normal"
             fullWidth
             id="email"
-            label="Email"
+            label={contact.email}
             name="email"
             variant="outlined"
             autoComplete="email"
@@ -107,7 +107,7 @@ function ModalCreate() {
             fullWidth
             variant="outlined"
             id="telefone"
-            label="Telefone"
+            label={contact.phone}
             name="telefone"
             type="number"
             autoComplete="telefone"
@@ -134,4 +134,4 @@ function ModalCreate() {
   );
 }
 
-export default ModalCreate;
+export default ModalUpdate;

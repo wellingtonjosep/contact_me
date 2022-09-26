@@ -5,8 +5,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { createTheme, Fab, IconButton } from "@mui/material";
-import { Delete, Edit, EditNotifications } from "@mui/icons-material";
+import { createTheme, Fab } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import { ContactContext } from "../../Providers/contact";
 
@@ -48,16 +48,13 @@ function a11yProps(index) {
 export default function Table() {
   const [value, setValue] = React.useState(0);
 
-  const { getContacts, contacts, setModalCreate } =
+  const { getContacts, contacts, setModalCreate, setModalUpdate, deleteContact, setContact } =
     React.useContext(ContactContext);
 
-  const theme = createTheme({
-    palette: {
-      secondary: {
-        main: "#000",
-      },
-    },
-  });
+  function openUpdate(data) {
+    setContact(data)
+    setModalUpdate(true);
+  }
 
   React.useEffect(() => {
     getContacts();
@@ -79,6 +76,7 @@ export default function Table() {
         marginRight: "auto",
         marginTop: 5,
         borderRadius: 2,
+        position: "relative",
       }}
       variant="contained"
     >
@@ -88,7 +86,7 @@ export default function Table() {
         indicatorColor="primary"
         value={value}
         onChange={handleChange}
-        sx={{ borderColor: "divider" }}
+        sx={{ color: "black" ,borderColor: "divider", backgroundColor: "gray", borderRadius: "10px 10px 0px 0px" }}
       >
         {contacts.map((user, index) => {
           return <Tab key={index} label={user.name} {...a11yProps(index)} />;
@@ -104,31 +102,33 @@ export default function Table() {
             </span>
             <span>
               <Fab
+                onClick={() => openUpdate(user)}
                 color="success"
-                sx={{ marginTop: 3, height: 3, width: 35 }}
+                sx={{ position: "absolute", right: 140, bottom: 9 }}
                 aria-label="edit"
               >
                 <Edit />
               </Fab>
               <Fab
+                onClick={() => deleteContact(user)}
                 color="error"
-                sx={{ marginLeft: 1, marginTop: 3, height: 3, width: 35 }}
+                sx={{ position: "absolute", right: 75, bottom: 9 }}
                 aria-label="edit"
               >
                 <Delete />
               </Fab>
             </span>
-            <Fab
-              onClick={() => setModalCreate(true)}
-              color="primary"
-              sx={{ marginLeft: "auto" }}
-              aria-label="edit"
-            >
-              <AddIcon />
-            </Fab>
           </TabPanel>
         );
       })}
+      <Fab
+        onClick={() => setModalCreate(true)}
+        color="primary"
+        sx={{ position: "absolute", right: 10, bottom: 9 }}
+        aria-label="edit"
+      >
+        <AddIcon />
+      </Fab>
     </Box>
   );
 }

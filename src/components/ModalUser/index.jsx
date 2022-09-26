@@ -4,15 +4,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Box } from "@mui/system";
 import { Button, TextField, Typography } from "@mui/material";
-import { ContactContext } from "../../Providers/contact";
+import { UserContext } from "../../Providers/user";
 
-function ModalCreate() {
-  const { setModalCreate, createContact } = useContext(ContactContext);
+function ModalUser() {
+  
+  const { setModalUser, user, updateUser  } = useContext(UserContext)
 
   const schema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório!"),
-    email: yup.string().email("Email Inválido").required("Campo obrigatório!"),
-    phone: yup.string().required("Campo obrigatório!"),
+    name: yup.string(),
+    email: yup.string().email("Email Inválido"),
+    phone: yup.string(),
+    password: yup
+      .string()
+      .min(8, "Mínimo de 8 digitos")
   });
 
   const {
@@ -22,7 +26,7 @@ function ModalCreate() {
   } = useForm({ resolver: yupResolver(schema) });
 
   function onSubmitFunction(data) {
-    createContact(data);
+    updateUser(data)
   }
 
   return (
@@ -51,7 +55,7 @@ function ModalCreate() {
         }}
       >
         <section>
-          <Typography variant="h6">ADICIONAR NOVO CONTATO</Typography>
+          <Typography variant="h6">ATUALIZAR USUARIO</Typography>
           <Button
             sx={{
               position: "absolute",
@@ -64,7 +68,7 @@ function ModalCreate() {
               fontSize: "21px",
             }}
             variant="outlined"
-            onClick={() => setModalCreate(false)}
+            onClick={() => setModalUser(false)}
           >
             X
           </Button>
@@ -75,7 +79,7 @@ function ModalCreate() {
             fullWidth
             id="name"
             variant="outlined"
-            label="Nome"
+            label={user.name}
             name="name"
             autoComplete="name"
             autoFocus
@@ -90,7 +94,7 @@ function ModalCreate() {
             margin="normal"
             fullWidth
             id="email"
-            label="Email"
+            label={user.email}
             name="email"
             variant="outlined"
             autoComplete="email"
@@ -106,17 +110,34 @@ function ModalCreate() {
             margin="normal"
             fullWidth
             variant="outlined"
-            id="telefone"
-            label="Telefone"
-            name="telefone"
+            id="phone"
+            label={user.phone}
+            name="phone"
             type="number"
-            autoComplete="telefone"
+            autoComplete="phone"
             autoFocus
             {...register("phone")}
           />
           <label>
             {!!errors.phone?.message && (
               <span className="span-register"> {errors.phone.message}</span>
+            )}
+          </label>
+          <TextField
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            id="password"
+            label={"Nova senha"}
+            name="password"
+            type="password"
+            autoComplete="password"
+            autoFocus
+            {...register("password")}
+          />
+          <label>
+            {!!errors.password?.message && (
+              <span className="span-register"> {errors.password.message}</span>
             )}
           </label>
 
@@ -134,4 +155,4 @@ function ModalCreate() {
   );
 }
 
-export default ModalCreate;
+export default ModalUser;
