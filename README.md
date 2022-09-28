@@ -14,3 +14,7 @@
 ----------
 > ### Deploy https://contact-me-ap.herokuapp.com/
 ----------
+
+----------
+> ### Versel https://contact-me-xi.vercel.app/
+----------
