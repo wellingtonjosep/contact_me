@@ -86,7 +86,6 @@ export const UserProviders = ({ children }) => {
         setUser(res.data);
       })
       .catch((err) => {
-        console.log(err);
       });
   }
 
@@ -109,7 +108,6 @@ export const UserProviders = ({ children }) => {
         },
       })
       .then((res) => {
-        console.log(res);
         toast.update(loading, {
           render: "Conta atualizado",
           autoClose: 1000,
@@ -121,7 +119,6 @@ export const UserProviders = ({ children }) => {
         getUser(user.id);
       })
       .catch((err) => {
-        console.log(err);
         toast.update(loading, {
           render: "Erro ao tentar atualizar sua conta",
           autoClose: 1000,
