@@ -33,7 +33,7 @@ export default function SignInSide() {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório!"),
     email: yup.string().email("Email Inválido").required("Campo obrigatório!"),
-    phone: yup.string().required("Campo obrigatório!"),
+    phone: yup.string().max(10,"Tamanho máximo 10 dígitos").required("Campo obrigatório!"),
     confEmail: yup
       .string()
       .oneOf([yup.ref("email")], "Emails diferentes")
